@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +8,36 @@
     <script type="module" src="./functions/index.js"></script> <!-- Importando index.js -->
 </head>
 <body>
-    <div id="start-screen">
-        <h1>Select Quiz Mode</h1>
-        <button onclick="startQuiz(true)">Start Quiz with Immediate Feedback</button>
-        <button onclick="startQuiz(false)">Start Quiz with End Feedback</button>
+    <div id="auth-container">
+        <h1>Bem-vindo ao Quiz App</h1>
+
+        <div id="login-screen">
+            <h2>Login</h2>
+            <input type="email" id="login-email" placeholder="Digite seu email" />
+            <input type="password" id="login-password" placeholder="Digite sua senha" />
+            <button onclick="login()">Entrar</button>
+            <p>Não tem uma conta? <a href="#" onclick="toggleAuthForms()">Cadastre-se</a></p>
+        </div>
+
+        <div id="signup-screen" style="display: none;">
+            <h2>Cadastro</h2>
+            <input type="email" id="signup-email" placeholder="Digite seu email" />
+            <input type="password" id="signup-password" placeholder="Digite sua senha" />
+            <button onclick="signup()">Cadastrar</button>
+            <p>Já tem uma conta? <a href="#" onclick="toggleAuthForms()">Faça login</a></p>
+        </div>
+    </div>
+
+    <div id="start-screen" style="display: none;">
+        <h1>Selecione o Modo do Quiz</h1>
+        <button onclick="startQuiz(true)">Começar Quiz com Feedback Imediato</button>
+        <button onclick="startQuiz(false)">Começar Quiz com Feedback ao Final</button>
+        <button onclick="logout()">Sair</button>
     </div>
 
     <div id="quiz-container" style="display: none;">
         <div id="question-container"></div>
-        <button id="next-btn" onclick="nextQuestion()">Next Question</button>
+        <button id="next-btn" onclick="nextQuestion()">Próxima Pergunta</button>
         <div id="feedback"></div>
         <div id="result"></div>
     </div>

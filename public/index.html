@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="./functions/index.js"></script> <!-- Importando index.js -->
+</head>
+<body>
+    <div id="start-screen">
+        <h1>Select Quiz Mode</h1>
+        <button onclick="startQuiz(true)">Start Quiz with Immediate Feedback</button>
+        <button onclick="startQuiz(false)">Start Quiz with End Feedback</button>
+    </div>
+
+    <div id="quiz-container" style="display: none;">
+        <div id="question-container"></div>
+        <button id="next-btn" onclick="nextQuestion()">Next Question</button>
+        <div id="feedback"></div>
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

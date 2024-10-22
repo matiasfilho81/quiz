@@ -1,0 +1,7 @@
+# Ignorar arquivos desnecessários
+firebase-config.js
+package-lock.json
+script.js
+.firebaserc
+
+# git rm --cached firebase-config.js package-lock.json script.js .firebaserc

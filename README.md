@@ -92,28 +92,30 @@ firebase deploy --only functions:nomeDaFuncao
 firebase deploy --only functions,hosting --debug
 
 <!-- ## 📁 Arquitetura do Projeto -->
-
-<!-- /quiz
-├── /functions              # Código das funções Firebase
-│   ├── node_modules        # Dependências do projeto
-│   ├── eslint.config.mjs   # Configuração do ESLint
-│   ├── index.js            # Funções principais do projeto
-│   ├── firebase-config.js  # Configuração do Firebase
-│   ├── package.json        # Gerenciamento de dependências
-│   ├── package-lock.json   # Registro exato das dependências instaladas
-│   └── script.js           # Scripts auxiliares para lógica do projeto
+<!-- 
+/quiz
+├── /functions               # Código das funções Firebase
+│   ├── node_modules         # Dependências do projeto
+│   ├── eslint.config.mjs    # Configuração do ESLint
+│   ├── index.js             # Funções principais do projeto
+│   ├── firebase-config.js   # Configuração do Firebase
+│   ├── package.json         # Gerenciamento de dependências
+│   ├── package-lock.json    # Registro exato das dependências instaladas
+│   └── script.js            # Scripts auxiliares para lógica do projeto
 │
-├── /public                 # Arquivos do hosting (frontend)
-│   ├── index.html          # Página inicial
-│   ├── styles.css          # Estilos CSS
-│   └── /assets             # Imagens e outros arquivos estáticos
+├── /public              
+│   ├── index.html       # Página principal
+│   ├── styles.css       # Estilos CSS
+│   ├── /data            
+│   │   └── questions.json  # Arquivo de perguntas
+│   └── script.js        # Lógica do Quiz
 │
-├── .eslintrc.json          # Configurações adicionais do ESLint
-├── .firebaserc             # Configuração do Firebase CLI
-├── .gitignore              # Arquivos a serem ignorados pelo Git
-├── firebase.json           # Configurações gerais do Firebase
-├── firestore.rules         # Regras de segurança do Firestore
-├── firestore.indexes.json  # Configuração de índices do Firestore
-└── README.md               # Documentação do projeto -->
-
+├── .eslintrc.json           # Configurações adicionais do ESLint
+├── .firebaserc              # Configuração do Firebase CLI
+├── .gitignore               # Arquivos a serem ignorados pelo Git
+├── firebase.json            # Configurações gerais do Firebase
+├── firestore.rules          # Regras de segurança do Firestore
+├── firestore.indexes.json   # Configuração de índices do Firestore
+└── README.md                # Documentação do projeto
+ -->
 

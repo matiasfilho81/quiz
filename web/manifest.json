@@ -1,6 +1,6 @@
 {
-    "name": "quiz_puc",
-    "short_name": "quiz_puc",
+    "name": "quiz",
+    "short_name": "quiz",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

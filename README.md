@@ -1,4 +1,4 @@
-# quiz_puc
+# quiz
 
 A new Flutter project.
 

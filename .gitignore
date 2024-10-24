@@ -1,7 +1,43 @@
-# Ignorar arquivos desnecessários
-firebase-config.js
-package-lock.json
-.firebaserc
+# Arquivos e diretórios do Dart/Flutter
+.dart_tool/
+.buildlog/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
 
-# git rm --cached firebase-config.js package-lock.json script.js .firebaserc
+# Logs e dumps de erros
+*.log
+*.iml
+*.hprof
+
+# Builds
+build/
+web_entrypoint.dart.js
+web_entrypoint.dart.js.map
+
+# Configurações locais
+.idea/
+.vscode/
+.DS_Store
+
+# Firebase
 firebase-debug.log
+firebase-debug.*.log
+firebase.json
+service-account.json  # Se você usar uma conta de serviço para Firebase Admin
+
+# Node.js e dependências npm
+node_modules/
+package-lock.json
+
+# Arquivos gerados pelo sistema ou IDEs
+*.swp
+*.swo
+*.orig
+*.bak
+Thumbs.db
+*.tmp
+
+firebase_options.dart

@@ -14,7 +14,7 @@ void main() async {
     EmailAuthProvider(),
   ]);
 
-  await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   await FirebaseAuth.instance.signOut();
 
   runApp(const AuthApp());

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -70,22 +69,47 @@ class _HomePageState extends State<HomePage> {
               "Id: ${_user.uid}\n"
               "DisplayName: ${_user.displayName}",
             ),
+            const SizedBox(height: 20),
+
+            // Botão para navegar para a tela de perfil
             TextButton(
               onPressed: () async {
                 await Navigator.of(context).pushNamed('/profile');
-                if (!mounted) {
-                  return;
-                }
+                if (!mounted) return;
                 if (FirebaseAuth.instance.currentUser != null) {
-                  // Refresh the UI with a new user instance
-                  // to catch any changes done in the profile screen
                   setState(() {
                     _user = FirebaseAuth.instance.currentUser!;
                   });
                 }
               },
-              child: const Text('Proflie Screen'),
-            )
+              child: const Text('Profile Screen'),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Botão Tutorial
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed('/tutorial');
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(200, 50),
+              ),
+              child: const Text('Tutorial'),
+            ),
+
+            const SizedBox(height: 10),
+
+            // Botão Prova
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed('/prova');
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(200, 50),
+              ),
+              child: const Text('Prova'),
+            ),
           ],
         ),
       ),

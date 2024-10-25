@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
-import 'src/firebase_options.dart';
 
-import 'src/app.dart';
+import 'src/auth_app.dart';
+import 'src/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,8 +14,8 @@ void main() async {
     EmailAuthProvider(),
   ]);
 
-  // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-  await FirebaseAuth.instance.signOut();
+  await FirebaseAuth.instance
+      .signOut(); // Opcional: Garantir que o usuário começa deslogado
 
-  runApp(const AuthApp());
+  runApp(const AuthApp()); // Executar a aplicação de autenticação.
 }

@@ -41,3 +41,10 @@ Thumbs.db
 *.tmp
 
 firebase_options.dart
+pubspec.lock
+pubspec.lock
+.dart_tool/package_config_subset
+.dart_tool/package_config.json
+build/flutter_assets/NOTICES
+build/flutter_assets/NOTICES
+pubspec.lock

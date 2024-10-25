@@ -1,8 +1,8 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
-import 'home_page.dart'; // Importando a HomePage ajustada.
-import 'tutorial_screen.dart'; // Tela de Tutorial.
-import 'prova_screen.dart'; // Tela de Prova.
+import 'home_page.dart';
+import 'tutorial_screen.dart';
+import 'prova_screen.dart';
 
 class AuthApp extends StatelessWidget {
   const AuthApp({super.key});
@@ -47,6 +47,7 @@ class AuthApp extends StatelessWidget {
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       '/home',
                       (_) => false,
+                      arguments: user.displayName ?? user.email,
                     );
                   }
                 },
@@ -54,8 +55,14 @@ class AuthApp extends StatelessWidget {
             ],
           );
         },
-        '/home': (context) => const HomePage(),
-        '/tutorial': (context) => const TutorialScreen(),
+        '/home': (context) {
+          final userName = ModalRoute.of(context)?.settings.arguments as String;
+          return HomePage(userName: userName);
+        },
+        '/tutorial': (context) {
+          final userName = ModalRoute.of(context)?.settings.arguments as String;
+          return TutorialScreen(userName: userName);
+        },
         '/prova': (context) => const ProvaScreen(),
         '/profile': (context) => ProfileScreen(
               appBar: AppBar(title: const Text('Profile')),

@@ -1,24 +1,30 @@
 import 'dart:convert';
 import 'dart:async';
 import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class TutorialScreen extends StatefulWidget {
-  const TutorialScreen({super.key});
+  final String userName; // Recebe o nome do usuário
+
+  const TutorialScreen({super.key, required this.userName});
 
   @override
   TutorialScreenState createState() => TutorialScreenState();
 }
 
 class TutorialScreenState extends State<TutorialScreen> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   List<dynamic> _questions = [];
   int _currentQuestionIndex = 0;
   int _score = 0;
   Timer? _timer;
   int _timeRemaining = 60;
   bool _answered = false;
-  int? _selectedAnswer; // Armazena a alternativa escolhida
+  int? _selectedAnswer;
+  final List<Map<String, dynamic>> _userAnswers = []; // Armazena as respostas
 
   @override
   void initState() {
@@ -70,11 +76,11 @@ class TutorialScreenState extends State<TutorialScreen> {
         _currentQuestionIndex++;
         _timeRemaining = 60;
         _answered = false;
-        _selectedAnswer = null; // Resetar a seleção para a próxima questão
+        _selectedAnswer = null;
       });
       _startTimer();
     } else {
-      _showFinalScore();
+      _saveResultsToFirestore(); // Salva no Firestore ao finalizar
     }
   }
 
@@ -83,13 +89,35 @@ class TutorialScreenState extends State<TutorialScreen> {
 
     setState(() {
       _answered = true;
-      if (_selectedAnswer ==
-          _questions[_currentQuestionIndex]['correctAnswer']) {
-        _score++;
-      }
+      bool correct =
+          _selectedAnswer == _questions[_currentQuestionIndex]['correctAnswer'];
+      if (correct) _score++;
+
+      // Armazenar a resposta do usuário
+      _userAnswers.add({
+        'question': _questions[_currentQuestionIndex]['question'],
+        'selectedAnswer': _selectedAnswer,
+        'correctAnswer': _questions[_currentQuestionIndex]['correctAnswer'],
+        'isCorrect': correct,
+      });
     });
 
     Future.delayed(const Duration(seconds: 2), _nextQuestion);
+  }
+
+  Future<void> _saveResultsToFirestore() async {
+    try {
+      await _firestore.collection('quiz_results').add({
+        'userName': widget.userName,
+        'score': _score,
+        'answers': _userAnswers,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+
+      _showFinalScore();
+    } catch (e) {
+      _showErrorDialog('Erro ao salvar resultados.');
+    }
   }
 
   void _showFinalScore() {
@@ -102,8 +130,8 @@ class TutorialScreenState extends State<TutorialScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.of(context).pop(); // Fecha o diálogo
-              Navigator.of(context).pop(); // Volta para a tela anterior
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();
             },
             child: const Text('OK'),
           ),
@@ -121,7 +149,7 @@ class TutorialScreenState extends State<TutorialScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.of(context).pop(); // Fecha o diálogo
+              Navigator.of(context).pop();
             },
             child: const Text('OK'),
           ),
@@ -162,7 +190,7 @@ class TutorialScreenState extends State<TutorialScreen> {
                 value: index,
                 groupValue: _selectedAnswer,
                 onChanged: _answered
-                    ? null // Desativa a seleção se a questão já foi respondida
+                    ? null
                     : (value) {
                         setState(() {
                           _selectedAnswer = value;
@@ -172,9 +200,7 @@ class TutorialScreenState extends State<TutorialScreen> {
             }),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _answered
-                  ? null
-                  : _checkAnswer, // Botão desativado após responder
+              onPressed: _answered ? null : _checkAnswer,
               child: const Text('Confirmar'),
             ),
             const Spacer(),

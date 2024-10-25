@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
         route,
         arguments: {
           'userName': widget.userName,
-          'ra': widget.ra,
+          'ra': _ra ?? 'RA não definido',
         },
       );
     }
@@ -96,10 +96,19 @@ class _HomePageState extends State<HomePage> {
           children: [
             // Cabeçalho com o nome do usuário
             Text(
-              'Welcome, ${widget.userName}!',
+              'Olá, ${widget.userName}!',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
+
+            // Texto explicativo sobre a prova
+            const Text(
+              'Bem-vindo à prova da Disciplina de Desenvolvimento WEB, '
+              'ministrada pelo professor José Matias Lemes Filho.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 10),
             const SizedBox(height: 20),
 
             // Informações do usuário: Email, ID, Nome e RA
@@ -118,14 +127,6 @@ class _HomePageState extends State<HomePage> {
 
             const SizedBox(height: 30),
 
-            // Texto explicativo sobre a prova
-            const Text(
-              'Bem-vindo à prova da Disciplina de Desenvolvimento WEB, '
-              'ministrada pelo professor José Matias Lemes Filho.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 10),
             const Text(
               'Por favor, preencha seu RA antes de começar o tutorial ou a prova.',
               textAlign: TextAlign.center,
@@ -140,10 +141,10 @@ class _HomePageState extends State<HomePage> {
               child: const Text('Iniciar Tutorial'),
             ),
             const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () => _checkAndNavigate('/exam'),
-              child: const Text('Iniciar Prova'),
-            ),
+            // ElevatedButton(
+            //   onPressed: () => _checkAndNavigate('/exam'),
+            //   child: const Text('Iniciar Prova'),
+            // ),
           ],
         ),
       ),

@@ -7,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TestScreen extends StatefulWidget {
   final String userName;
-  final String ra; // Adicionar o RA como parâmetro
+  final String ra;
 
   const TestScreen({super.key, required this.userName, required this.ra});
 
@@ -21,18 +21,19 @@ class TestScreenState extends State<TestScreen> {
   int _currentQuestionIndex = 0;
   int _score = 0;
   Timer? _timer;
-  int _timeRemaining = 60; // Tempo por questão (1 minuto)
+  int _timeRemaining = 60;
   bool _answered = false;
   int? _selectedAnswer;
-  final List<Map<String, dynamic>> _userAnswers = []; // Armazena as respostas
-
-  late DateTime _startTime; // Hora de início da prova
-  late DateTime _endTime; // Hora de término da prova
+  final List<Map<String, dynamic>> _userAnswers = [];
+  late DateTime _startTime;
+  late DateTime _endTime;
+  late bool _showScorePerQuestion; // Experimento A/B
 
   @override
   void initState() {
     super.initState();
-    _startTime = DateTime.now(); // Marcar o início da prova
+    _startTime = DateTime.now();
+    _showScorePerQuestion = Random().nextBool(); // Sorteio A/B
     _loadQuestions();
   }
 
@@ -83,8 +84,8 @@ class TestScreenState extends State<TestScreen> {
       });
       _startTimer();
     } else {
-      _endTime = DateTime.now(); // Marcar o fim da prova
-      _saveResultsToFirestore(); // Salvar os resultados
+      _endTime = DateTime.now();
+      _saveResultsToFirestore();
     }
   }
 
@@ -97,17 +98,43 @@ class TestScreenState extends State<TestScreen> {
           _selectedAnswer == _test[_currentQuestionIndex]['correctAnswer'];
       if (correct) _score++;
 
-      // Armazenar a resposta do usuário
       _userAnswers.add({
         'question': _test[_currentQuestionIndex]['question'],
         'selectedAnswer': _selectedAnswer,
         'correctAnswer': _test[_currentQuestionIndex]['correctAnswer'],
         'isCorrect': correct,
-        'timestamp': DateTime.now().toIso8601String(), // Momento da resposta
+        'timestamp': DateTime.now().toIso8601String(),
       });
     });
 
-    Future.delayed(const Duration(seconds: 2), _nextQuestion);
+    if (_showScorePerQuestion) {
+      _showQuestionScore(); // Exibir o score por questão
+    } else {
+      Future.delayed(const Duration(seconds: 2), _nextQuestion);
+    }
+  }
+
+  void _showQuestionScore() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Resultado da Questão'),
+        content: Text(
+          _userAnswers[_currentQuestionIndex]['isCorrect']
+              ? 'Você acertou esta questão!'
+              : 'Você errou esta questão.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              _nextQuestion();
+            },
+            child: const Text('Próxima'),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _saveResultsToFirestore() async {
@@ -117,11 +144,13 @@ class TestScreenState extends State<TestScreen> {
     try {
       await _firestore.collection('test_results').add({
         'userName': widget.userName,
-        'ra': widget.ra, // Salvar o RA do usuário
+        'ra': widget.ra,
         'score': _score,
         'answers': _userAnswers,
-        'totalDuration': totalDuration.inSeconds, // Tempo total em segundos
-        'averageTimePerQuestion': averageTimePerQuestion, // Média por questão
+        'totalDuration': totalDuration.inSeconds,
+        'averageTimePerQuestion': averageTimePerQuestion,
+        'showScorePerQuestion':
+            _showScorePerQuestion, // Informação do experimento A/B
         'timestamp': FieldValue.serverTimestamp(),
       });
 
@@ -140,8 +169,8 @@ class TestScreenState extends State<TestScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.of(context).pop(); // Fecha o diálogo
-              Navigator.of(context).pop(); // Volta para a tela anterior
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();
             },
             child: const Text('OK'),
           ),
@@ -172,7 +201,7 @@ class TestScreenState extends State<TestScreen> {
   Widget build(BuildContext context) {
     if (_test.isEmpty) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Tutorial')),
+        appBar: AppBar(title: const Text('Prova')),
         body: const Center(child: CircularProgressIndicator()),
       );
     }

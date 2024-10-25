@@ -1,9 +1,9 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart' as firebase_ui;
 import 'package:flutter/material.dart';
 import 'home_page.dart';
-import 'tutorial_screen.dart';
+import 'profile_screen.dart' as local;
 import 'test_screen.dart';
-import 'profile_screen.dart' as local; // Seu ProfileScreen
+import 'tutorial_screen.dart';
 
 class AuthApp extends StatelessWidget {
   const AuthApp({super.key});

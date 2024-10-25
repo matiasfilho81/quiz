@@ -7,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TutorialScreen extends StatefulWidget {
   final String userName;
-  final String ra; // Adicionar o RA como parâmetro
+  final String ra;
 
   const TutorialScreen({super.key, required this.userName, required this.ra});
 
@@ -21,18 +21,22 @@ class TutorialScreenState extends State<TutorialScreen> {
   int _currentQuestionIndex = 0;
   int _score = 0;
   Timer? _timer;
-  int _timeRemaining = 60; // Tempo por questão (1 minuto)
+  int _timeRemaining = 60;
   bool _answered = false;
   int? _selectedAnswer;
-  final List<Map<String, dynamic>> _userAnswers = []; // Armazena as respostas
+  final List<Map<String, dynamic>> _userAnswers = [];
 
-  late DateTime _startTime; // Hora de início da prova
-  late DateTime _endTime; // Hora de término da prova
+  late DateTime _startTime;
+  late DateTime _endTime;
+
+  late bool
+      _showScorePerQuestion; // Variável para definir o grupo do experimento
 
   @override
   void initState() {
     super.initState();
-    _startTime = DateTime.now(); // Marcar o início da prova
+    _startTime = DateTime.now();
+    _showScorePerQuestion = Random().nextBool(); // Sorteio para A/B
     _loadQuestions();
   }
 
@@ -48,7 +52,7 @@ class TutorialScreenState extends State<TutorialScreen> {
           await rootBundle.loadString('assets/questions.json');
       final List<dynamic> data = json.decode(response);
       setState(() {
-        _questions = _getRandomQuestions(data, 5); // Sortear 5 perguntas
+        _questions = _getRandomQuestions(data, 5);
       });
       _startTimer();
     } catch (e) {
@@ -84,8 +88,8 @@ class TutorialScreenState extends State<TutorialScreen> {
       });
       _startTimer();
     } else {
-      _endTime = DateTime.now(); // Marcar o fim da prova
-      _saveResultsToFirestore(); // Salvar os resultados
+      _endTime = DateTime.now();
+      _saveResultsToFirestore();
     }
   }
 
@@ -98,17 +102,43 @@ class TutorialScreenState extends State<TutorialScreen> {
           _selectedAnswer == _questions[_currentQuestionIndex]['correctAnswer'];
       if (correct) _score++;
 
-      // Armazenar a resposta do usuário
       _userAnswers.add({
         'question': _questions[_currentQuestionIndex]['question'],
         'selectedAnswer': _selectedAnswer,
         'correctAnswer': _questions[_currentQuestionIndex]['correctAnswer'],
         'isCorrect': correct,
-        'timestamp': DateTime.now().toIso8601String(), // Momento da resposta
+        'timestamp': DateTime.now().toIso8601String(),
       });
     });
 
-    Future.delayed(const Duration(seconds: 2), _nextQuestion);
+    if (_showScorePerQuestion) {
+      _showQuestionScore();
+    } else {
+      Future.delayed(const Duration(seconds: 2), _nextQuestion);
+    }
+  }
+
+  void _showQuestionScore() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Resultado da Questão'),
+        content: Text(
+          _userAnswers[_currentQuestionIndex]['isCorrect']
+              ? 'Você acertou esta questão!'
+              : 'Você errou esta questão.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              _nextQuestion();
+            },
+            child: const Text('Próxima'),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _saveResultsToFirestore() async {
@@ -118,11 +148,12 @@ class TutorialScreenState extends State<TutorialScreen> {
     try {
       await _firestore.collection('quiz_results').add({
         'userName': widget.userName,
-        'ra': widget.ra, // Salvar o RA do usuário
+        'ra': widget.ra,
         'score': _score,
         'answers': _userAnswers,
-        'totalDuration': totalDuration.inSeconds, // Tempo total em segundos
-        'averageTimePerQuestion': averageTimePerQuestion, // Média por questão
+        'totalDuration': totalDuration.inSeconds,
+        'averageTimePerQuestion': averageTimePerQuestion,
+        'showScorePerQuestion': _showScorePerQuestion, // Experimento A/B
         'timestamp': FieldValue.serverTimestamp(),
       });
 
@@ -142,8 +173,8 @@ class TutorialScreenState extends State<TutorialScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.of(context).pop(); // Fecha o diálogo
-              Navigator.of(context).pop(); // Volta para a tela anterior
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();
             },
             child: const Text('OK'),
           ),
@@ -184,7 +215,8 @@ class TutorialScreenState extends State<TutorialScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            'Pergunta ${_currentQuestionIndex + 1} de ${_questions.length}'),
+          'Pergunta ${_currentQuestionIndex + 1} de ${_questions.length}',
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

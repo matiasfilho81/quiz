@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -10,38 +10,49 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class ProfileScreenState extends State<ProfileScreen> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final TextEditingController _raController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _loadRA();
+    _loadRA(); // Carregar o RA existente (se houver) ao iniciar a tela
   }
 
   Future<void> _loadRA() async {
-    User? user = _auth.currentUser;
+    User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      final doc = await _firestore.collection('users').doc(user.uid).get();
+      final doc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
       if (doc.exists) {
         String? ra = doc.data()?['ra'];
-        _raController.text = ra ?? '';
+        _raController.text =
+            ra ?? ''; // Preenche o campo com o RA se disponível
       }
     }
   }
 
   Future<void> _saveRA() async {
-    User? user = _auth.currentUser;
+    User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      await _firestore.collection('users').doc(user.uid).set({
-        'ra': _raController.text,
-      }, SetOptions(merge: true));
+      try {
+        await FirebaseFirestore.instance.collection('users').doc(user.uid).set(
+          {'ra': _raController.text},
+          SetOptions(merge: true), // Mesclar com os dados existentes
+        );
 
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('RA salvo com sucesso!')),
-      );
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('RA salvo com sucesso!')),
+        );
+
+        Navigator.of(context).pop(); // Voltar após salvar
+      } catch (e) {
+        // print('Erro ao salvar RA: $e');
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Erro ao salvar RA. Tente novamente.')),
+        );
+      }
     }
   }
 
@@ -49,19 +60,15 @@ class ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Perfil'),
+        title: const Text('Editar RA'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
               controller: _raController,
-              decoration: const InputDecoration(
-                labelText: 'RA',
-                hintText: 'Digite seu RA',
-              ),
+              decoration: const InputDecoration(labelText: 'RA'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(

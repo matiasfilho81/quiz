@@ -1,0 +1,226 @@
+import 'dart:convert';
+import 'dart:async';
+import 'dart:math';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class TestScreen extends StatefulWidget {
+  final String userName;
+  final String ra; // Adicionar o RA como parâmetro
+
+  const TestScreen({super.key, required this.userName, required this.ra});
+
+  @override
+  TestScreenState createState() => TestScreenState();
+}
+
+class TestScreenState extends State<TestScreen> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  List<dynamic> _test = [];
+  int _currentQuestionIndex = 0;
+  int _score = 0;
+  Timer? _timer;
+  int _timeRemaining = 60; // Tempo por questão (1 minuto)
+  bool _answered = false;
+  int? _selectedAnswer;
+  final List<Map<String, dynamic>> _userAnswers = []; // Armazena as respostas
+
+  late DateTime _startTime; // Hora de início da prova
+  late DateTime _endTime; // Hora de término da prova
+
+  @override
+  void initState() {
+    super.initState();
+    _startTime = DateTime.now(); // Marcar o início da prova
+    _loadQuestions();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _loadQuestions() async {
+    try {
+      final String response = await rootBundle.loadString('assets/exam.json');
+      final List<dynamic> data = json.decode(response);
+      setState(() {
+        _test = _getRandomQuestions(data, 30);
+      });
+      _startTimer();
+    } catch (e) {
+      _showErrorDialog('Erro ao carregar perguntas.');
+    }
+  }
+
+  List<dynamic> _getRandomQuestions(List<dynamic> data, int count) {
+    data.shuffle(Random());
+    return data.take(count).toList();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_timeRemaining > 0) {
+        setState(() {
+          _timeRemaining--;
+        });
+      } else {
+        _nextQuestion();
+      }
+    });
+  }
+
+  void _nextQuestion() {
+    _timer?.cancel();
+    if (_currentQuestionIndex < _test.length - 1) {
+      setState(() {
+        _currentQuestionIndex++;
+        _timeRemaining = 60;
+        _answered = false;
+        _selectedAnswer = null;
+      });
+      _startTimer();
+    } else {
+      _endTime = DateTime.now(); // Marcar o fim da prova
+      _saveResultsToFirestore(); // Salvar os resultados
+    }
+  }
+
+  void _checkAnswer() {
+    if (_answered || _selectedAnswer == null) return;
+
+    setState(() {
+      _answered = true;
+      bool correct =
+          _selectedAnswer == _test[_currentQuestionIndex]['correctAnswer'];
+      if (correct) _score++;
+
+      // Armazenar a resposta do usuário
+      _userAnswers.add({
+        'question': _test[_currentQuestionIndex]['question'],
+        'selectedAnswer': _selectedAnswer,
+        'correctAnswer': _test[_currentQuestionIndex]['correctAnswer'],
+        'isCorrect': correct,
+        'timestamp': DateTime.now().toIso8601String(), // Momento da resposta
+      });
+    });
+
+    Future.delayed(const Duration(seconds: 2), _nextQuestion);
+  }
+
+  Future<void> _saveResultsToFirestore() async {
+    Duration totalDuration = _endTime.difference(_startTime);
+    double averageTimePerQuestion = totalDuration.inSeconds / _test.length;
+
+    try {
+      await _firestore.collection('test_results').add({
+        'userName': widget.userName,
+        'ra': widget.ra, // Salvar o RA do usuário
+        'score': _score,
+        'answers': _userAnswers,
+        'totalDuration': totalDuration.inSeconds, // Tempo total em segundos
+        'averageTimePerQuestion': averageTimePerQuestion, // Média por questão
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+
+      _showFinalScore();
+    } catch (e) {
+      _showErrorDialog('Erro ao salvar resultados.');
+    }
+  }
+
+  void _showFinalScore() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Resultado Final'),
+        content: Text('Você acertou $_score de ${_test.length} perguntas!'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Fecha o diálogo
+              Navigator.of(context).pop(); // Volta para a tela anterior
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Erro'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_test.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('Tutorial')),
+        body: const Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    final question = _test[_currentQuestionIndex];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Pergunta ${_currentQuestionIndex + 1} de ${_test.length}'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              question['question'],
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            const SizedBox(height: 20),
+            ...List.generate(question['answers'].length, (index) {
+              return RadioListTile<int>(
+                title: Text(question['answers'][index]),
+                value: index,
+                groupValue: _selectedAnswer,
+                onChanged: _answered
+                    ? null
+                    : (value) {
+                        setState(() {
+                          _selectedAnswer = value;
+                        });
+                      },
+              );
+            }),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _answered ? null : _checkAnswer,
+              child: const Text('Confirmar'),
+            ),
+            const Spacer(),
+            Text(
+              'Tempo restante: $_timeRemaining segundos',
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

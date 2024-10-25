@@ -48,3 +48,4 @@ pubspec.lock
 build/flutter_assets/NOTICES
 build/flutter_assets/NOTICES
 pubspec.lock
+build/cache.dill.track.dill

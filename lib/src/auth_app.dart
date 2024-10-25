@@ -1,8 +1,9 @@
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart' as firebase_ui;
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'tutorial_screen.dart';
-import 'prova_screen.dart';
+import 'test_screen.dart';
+import 'profile_screen.dart' as local; // Seu ProfileScreen
 
 class AuthApp extends StatelessWidget {
   const AuthApp({super.key});
@@ -14,9 +15,9 @@ class AuthApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) {
-          return SignInScreen(
+          return firebase_ui.SignInScreen(
             actions: [
-              ForgotPasswordAction(
+              firebase_ui.ForgotPasswordAction(
                 (context, email) {
                   Navigator.of(context).pushNamed(
                     '/forgot-password',
@@ -24,30 +25,22 @@ class AuthApp extends StatelessWidget {
                   );
                 },
               ),
-              AuthStateChangeAction(
+              firebase_ui.AuthStateChangeAction(
                 (context, state) {
-                  if (state is UserCreated || state is SignedIn) {
-                    var user = (state is SignedIn)
+                  if (state is firebase_ui.UserCreated ||
+                      state is firebase_ui.SignedIn) {
+                    var user = (state is firebase_ui.SignedIn)
                         ? state.user
-                        : (state as UserCreated).credential.user;
+                        : (state as firebase_ui.UserCreated).credential.user;
                     if (user == null) return;
 
-                    if (!user.emailVerified && (state is UserCreated)) {
-                      user.sendEmailVerification();
-                    }
-
-                    if (state is UserCreated) {
-                      if (user.displayName == null && user.email != null) {
-                        var defaultDisplayName = user.email!.split('@')[0];
-                        user.updateDisplayName(defaultDisplayName);
-                      }
-                    }
-
-                    // Redireciona para a HomePage após o login
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       '/home',
                       (_) => false,
-                      arguments: user.displayName ?? user.email,
+                      arguments: {
+                        'userName': user.displayName ?? user.email ?? 'Usuário',
+                        'ra': '', // RA pode ser preenchido depois no perfil
+                      },
                     );
                   }
                 },
@@ -56,29 +49,34 @@ class AuthApp extends StatelessWidget {
           );
         },
         '/home': (context) {
-          final userName = ModalRoute.of(context)?.settings.arguments as String;
-          return HomePage(userName: userName);
+          final args =
+              ModalRoute.of(context)?.settings.arguments as Map<String, String>;
+          final userName = args['userName'] ?? 'Usuário';
+          final ra = args['ra'] ?? 'RA não definido';
+
+          return HomePage(userName: userName, ra: ra);
         },
         '/tutorial': (context) {
-          final userName = ModalRoute.of(context)?.settings.arguments as String;
-          return TutorialScreen(userName: userName);
+          final args =
+              ModalRoute.of(context)?.settings.arguments as Map<String, String>;
+          final userName = args['userName'] ?? 'Usuário';
+          final ra = args['ra'] ?? 'RA não definido';
+
+          return TutorialScreen(userName: userName, ra: ra);
         },
-        '/prova': (context) => const ProvaScreen(),
-        '/profile': (context) => ProfileScreen(
-              appBar: AppBar(title: const Text('Profile')),
-              providers: const [],
-              actions: [
-                SignedOutAction((context) {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    '/',
-                    (_) => false,
-                  );
-                }),
-              ],
-            ),
+        '/exam': (context) {
+          final args =
+              ModalRoute.of(context)?.settings.arguments as Map<String, String>;
+          final userName = args['userName'] ?? 'Usuário';
+          final ra = args['ra'] ?? 'RA não definido';
+
+          return TestScreen(userName: userName, ra: ra);
+        },
+        // '/exam': (context) => const ProvaScreen(),
+        '/profile': (context) => const local.ProfileScreen(),
         '/forgot-password': (context) {
           final email = ModalRoute.of(context)?.settings.arguments as String;
-          return ForgotPasswordScreen(
+          return firebase_ui.ForgotPasswordScreen(
             email: email,
             headerMaxExtent: 200,
           );

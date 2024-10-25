@@ -1,0 +1,602 @@
+[
+    {
+        "question": "Qual linguagem é usada para estilizar páginas web?",
+        "answers": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "PHP"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual tag HTML é usada para inserir uma imagem?",
+        "answers": [
+            "<img>",
+            "<image>",
+            "<picture>",
+            "<media>"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual linguagem é conhecida por ser usada no desenvolvimento front-end?",
+        "answers": [
+            "PHP",
+            "Python",
+            "JavaScript",
+            "Ruby"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Qual é a função do HTML?",
+        "answers": [
+            "Estilizar a página",
+            "Criar a estrutura da página",
+            "Executar lógica de programação",
+            "Armazenar dados"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual tag HTML é usada para criar um link?",
+        "answers": [
+            "<link>",
+            "<a>",
+            "<href>",
+            "<url>"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual propriedade CSS é usada para alterar a cor de fundo?",
+        "answers": [
+            "color",
+            "background-color",
+            "font-color",
+            "border-color"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual propriedade CSS é usada para alterar a fonte do texto?",
+        "answers": [
+            "font-family",
+            "text-font",
+            "font-style",
+            "text-style"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "O que é JavaScript?",
+        "answers": [
+            "Uma linguagem de marcação",
+            "Uma linguagem de estilos",
+            "Uma linguagem de programação",
+            "Uma biblioteca CSS"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Qual framework é amplamente utilizado para desenvolvimento front-end?",
+        "answers": [
+            "Laravel",
+            "React",
+            "Django",
+            "Flask"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Para que serve o Flexbox no CSS?",
+        "answers": [
+            "Criar menus suspensos",
+            "Alinhar e distribuir elementos na página",
+            "Adicionar animações",
+            "Definir estilos de fontes"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual comando é usado para inicializar um projeto Node.js?",
+        "answers": [
+            "npm init",
+            "node start",
+            "npm install",
+            "node init"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual protocolo é utilizado para comunicação segura na web?",
+        "answers": [
+            "HTTP",
+            "HTTPS",
+            "FTP",
+            "SSH"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é a função do atributo 'alt' na tag <img>?",
+        "answers": [
+            "Mudar o tamanho da imagem",
+            "Adicionar um link à imagem",
+            "Descrever a imagem para acessibilidade",
+            "Aplicar estilos à imagem"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Qual é o propósito do Git?",
+        "answers": [
+            "Gerenciar pacotes",
+            "Armazenar dados",
+            "Controle de versão",
+            "Prover estilos"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "O que significa API?",
+        "answers": [
+            "Application Performance Interface",
+            "Application Programming Interface",
+            "Advanced Programming Interface",
+            "Automated Programming Interface"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é a extensão de arquivos JavaScript?",
+        "answers": [
+            ".html",
+            ".css",
+            ".js",
+            ".jsx"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Qual é a função do JSON?",
+        "answers": [
+            "Criar estilos",
+            "Armazenar e transmitir dados",
+            "Desenvolver servidores",
+            "Adicionar interatividade"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Como você insere um comentário em CSS?",
+        "answers": [
+            "<!-- comentário -->",
+            "// comentário",
+            "/* comentário */",
+            "# comentário"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Qual é a função do 'localStorage' em JavaScript?",
+        "answers": [
+            "Armazenar dados temporários",
+            "Enviar dados para o servidor",
+            "Armazenar dados permanentemente no navegador",
+            "Exibir dados no console"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "O que significa SEO?",
+        "answers": [
+            "Search Engine Optimization",
+            "Software Enhancement Operation",
+            "Secure Engine Optimization",
+            "Search Engine Organization"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual é a porta padrão do servidor HTTP?",
+        "answers": [
+            "21",
+            "80",
+            "443",
+            "8080"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual biblioteca é famosa por facilitar a manipulação do DOM?",
+        "answers": [
+            "Angular",
+            "jQuery",
+            "Vue.js",
+            "Bootstrap"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual propriedade CSS é usada para criar um layout responsivo?",
+        "answers": [
+            "display",
+            "media queries",
+            "grid-template",
+            "float"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual dos seguintes é um método HTTP?",
+        "answers": [
+            "FETCH",
+            "POST",
+            "CONNECT",
+            "ALL"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é o significado de MVC?",
+        "answers": [
+            "Model View Controller",
+            "Module View Content",
+            "Model View Component",
+            "Module Value Controller"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual dos seguintes é um banco de dados NoSQL?",
+        "answers": [
+            "PostgreSQL",
+            "MongoDB",
+            "MySQL",
+            "SQLite"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual comando instala pacotes usando o npm?",
+        "answers": [
+            "npm install",
+            "npm start",
+            "npm build",
+            "npm create"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual das seguintes opções é uma pseudo-classe CSS?",
+        "answers": [
+            ":hover",
+            "::before",
+            ":after",
+            "::selection"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual ferramenta é usada para versionamento de código?",
+        "answers": [
+            "Git",
+            "Jenkins",
+            "Docker",
+            "Node.js"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual das seguintes tecnologias é usada para desenvolvimento de API REST?",
+        "answers": [
+            "React",
+            "Express",
+            "Sass",
+            "jQuery"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é o propósito do Docker no desenvolvimento de software?",
+        "answers": [
+            "Controle de versão",
+            "Criação de ambientes isolados",
+            "Estilização de páginas",
+            "Deploy em servidores"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "O que significa DOM?",
+        "answers": [
+            "Data Object Model",
+            "Document Object Model",
+            "Design Oriented Method",
+            "Document Oriented Module"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é a função da tag <meta> no HTML?",
+        "answers": [
+            "Adicionar links",
+            "Definir metadados",
+            "Incluir imagens",
+            "Criar formulários"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual biblioteca é conhecida por simplificar o uso de CSS?",
+        "answers": [
+            "Sass",
+            "React",
+            "Express",
+            "Angular"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual é o tipo de armazenamento usado pelo sessionStorage no navegador?",
+        "answers": [
+            "Armazenamento permanente",
+            "Armazenamento por sessão",
+            "Armazenamento temporário no servidor",
+            "Armazenamento em cookies"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual dos seguintes é um evento JavaScript?",
+        "answers": [
+            "onclick",
+            "onhover",
+            "onpress",
+            "ontype"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "O que é um SPA (Single Page Application)?",
+        "answers": [
+            "Aplicação com várias páginas",
+            "Aplicação que recarrega uma página única",
+            "Aplicação que usa múltiplos servidores",
+            "Aplicação que não usa CSS"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "O que é uma Promise em JavaScript?",
+        "answers": [
+            "Um tipo de função",
+            "Uma estrutura de controle",
+            "Um objeto que representa uma operação assíncrona",
+            "Uma biblioteca externa"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Qual ferramenta é usada para automação de tarefas em JavaScript?",
+        "answers": [
+            "Gulp",
+            "React",
+            "Vue",
+            "Bootstrap"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual comando instala o Vue CLI globalmente?",
+        "answers": [
+            "npm install vue",
+            "npm install -g @vue/cli",
+            "vue init",
+            "vue install"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é a diferença entre '==' e '===' em JavaScript?",
+        "answers": [
+            "Nenhuma diferença",
+            "'==' verifica apenas valor, '===' verifica valor e tipo",
+            "'===' é mais lento",
+            "'==' não funciona com strings"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual tag HTML é usada para definir um cabeçalho?",
+        "answers": [
+            "<head>",
+            "<header>",
+            "<h1>",
+            "<div>"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "O que significa AJAX?",
+        "answers": [
+            "Asynchronous JavaScript and XML",
+            "Advanced JavaScript Application",
+            "Automated JSON Application",
+            "Angular JavaScript Application"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual é a função do Bootstrap?",
+        "answers": [
+            "Gerenciamento de pacotes",
+            "Estilização e layout responsivo",
+            "Controle de versão",
+            "Criação de APIs"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual propriedade CSS é usada para definir a opacidade de um elemento?",
+        "answers": [
+            "visibility",
+            "opacity",
+            "display",
+            "background"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é a principal função de um servidor web?",
+        "answers": [
+            "Estilizar páginas",
+            "Armazenar dados",
+            "Servir arquivos para clientes",
+            "Compilar código"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Qual framework utiliza componentes para criar interfaces?",
+        "answers": [
+            "Laravel",
+            "React",
+            "Express",
+            "Django"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "O que é o JSX no React?",
+        "answers": [
+            "Uma biblioteca CSS",
+            "Uma extensão de JavaScript",
+            "Um banco de dados",
+            "Uma API"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é a sintaxe correta para criar uma função em JavaScript?",
+        "answers": [
+            "def myFunction()",
+            "function myFunction()",
+            "func myFunction()",
+            "lambda myFunction()"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual protocolo é usado para comunicação em tempo real em websockets?",
+        "answers": [
+            "HTTP",
+            "FTP",
+            "WebSocket",
+            "SSH"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "O que é um middleware no Express?",
+        "answers": [
+            "Uma biblioteca externa",
+            "Uma função que trata requisições",
+            "Um banco de dados",
+            "Um servidor"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual comando inicializa um novo projeto React?",
+        "answers": [
+            "npm start react",
+            "create-react-app my-app",
+            "npm install react",
+            "react init"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual biblioteca facilita a manipulação de rotas em React?",
+        "answers": [
+            "Express",
+            "React Router",
+            "jQuery",
+            "Vue Router"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual método é usado para enviar dados em uma requisição HTTP POST?",
+        "answers": [
+            "fetch()",
+            "get()",
+            "post()",
+            "send()"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "O que é o Node.js?",
+        "answers": [
+            "Um servidor web",
+            "Um framework front-end",
+            "Um runtime JavaScript",
+            "Um banco de dados"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Qual dos seguintes bancos de dados é relacional?",
+        "answers": [
+            "MongoDB",
+            "MySQL",
+            "Cassandra",
+            "Firebase"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é o comando para iniciar um servidor Node.js?",
+        "answers": [
+            "node server.js",
+            "npm init server",
+            "node init",
+            "npm start"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual é a função do 'useState' no React?",
+        "answers": [
+            "Gerenciar rotas",
+            "Estilizar componentes",
+            "Gerenciar estado do componente",
+            "Controlar requisições HTTP"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Qual tag HTML é usada para criar uma tabela?",
+        "answers": [
+            "<div>",
+            "<table>",
+            "<form>",
+            "<section>"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é a principal vantagem de usar TypeScript?",
+        "answers": [
+            "Estilizar componentes",
+            "Adicionar tipagem estática",
+            "Melhorar a performance do CSS",
+            "Reduzir o tempo de execução"
+        ],
+        "correctAnswer": 1
+    }
+]

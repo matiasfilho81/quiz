@@ -4,10 +4,10 @@ A new Flutter project.
 
 # Sobre
 
-Este projeto é desenvolvido por José Matias Lemes Filho e Carlos Eduardo Matias Lemes para a disciplina de Desenvolviemento WEB da PUC-CAMPINAS, SP.
+Este projeto é desenvolvido por José Matias Lemes Filho para a disciplina de Desenvolviemento WEB da PUC-CAMPINAS, SP.
 
 //
-for(i=0;i<10;i++>){
+for(i=0;i<=10;i++>){
     print(i);
 }
 

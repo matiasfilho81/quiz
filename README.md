@@ -2,6 +2,15 @@
 
 A new Flutter project.
 
+# Sobre
+
+Este projeto é desenvolvido por José Matias Lemes Filho para a disciplina de Desenvolviemento WEB da PUC-Campinas.
+
+//
+for(i=0;i<10;i++>){
+    print(i);
+}
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
@@ -15,6 +24,3 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-if(i=0;i>100;i++){
-    printf(i);
-}

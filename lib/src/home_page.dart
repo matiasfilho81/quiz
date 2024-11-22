@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
 
             // Texto explicativo sobre a prova
             const Text(
-              'Bem-vindo à prova da Disciplina de Desenvolvimento WEB, '
+              'Bem-vindo à prova da disciplina, '
               'ministrada pelo professor José Matias Lemes Filho.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16),

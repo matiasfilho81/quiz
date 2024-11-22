@@ -380,10 +380,10 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-10-25T09:59:54.757523Z",
+  "generated": "2024-11-06T15:33:25.840302Z",
   "generator": "pub",
-  "generatorVersion": "3.5.1",
+  "generatorVersion": "3.5.4",
   "flutterRoot": "file:///Users/matias/development/flutter",
-  "flutterVersion": "3.24.1",
+  "flutterVersion": "3.24.4",
   "pubCache": "file:///Users/matias/.pub-cache"
 }

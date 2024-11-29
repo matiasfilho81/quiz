@@ -36,7 +36,7 @@ class TutorialScreenState extends State<TutorialScreen> {
   void initState() {
     super.initState();
     _startTime = DateTime.now();
-    _showScorePerQuestion = Random().nextBool(); // Sorteio para A/B
+    _showScorePerQuestion = false; //Random().nextBool(); // Sorteio para A/B
     _loadQuestions();
   }
 
@@ -144,7 +144,7 @@ class TutorialScreenState extends State<TutorialScreen> {
   Future<void> _saveResultsToFirestore() async {
     Duration totalDuration = _endTime.difference(_startTime);
     double averageTimePerQuestion = totalDuration.inSeconds / _questions.length;
-
+    
     try {
       await _firestore.collection('quiz_results').add({
         'userName': widget.userName,
@@ -214,6 +214,7 @@ class TutorialScreenState extends State<TutorialScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'Pergunta ${_currentQuestionIndex + 1} de ${_questions.length}',
         ),

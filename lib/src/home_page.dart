@@ -89,63 +89,71 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Home Page'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Cabeçalho com o nome do usuário
-            Text(
-              'Olá, ${widget.userName}!',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headlineSmall,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Center(
+            child: SizedBox(
+              width: 420,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // Cabeçalho com o nome do usuário
+                  Text(
+                    'Olá, ${widget.userName}!',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+
+                  // Texto explicativo sobre a prova
+                  const Text(
+                    'Bem-vindo à prova da disciplina '
+                    'ministrada pelo professor José Matias Lemes Filho.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
+
+                  // Informações do usuário: Email, ID, Nome e RA
+                  _buildUserInfo('Email', _userEmail),
+                  _buildUserInfo('Id', _userId),
+                  _buildUserInfo('DisplayName', widget.userName),
+                  _buildUserInfo('RA', _ra ?? 'RA não cadastrado'),
+
+                  const SizedBox(height: 20),
+
+                  // Botões para editar o perfil e editar apenas o RA
+                  ElevatedButton(
+                    onPressed: _goToProfile,
+                    child: const Text('Editar Perfil'),
+                  ),
+
+                  const SizedBox(height: 30),
+
+                  const Text(
+                    'Por favor, preencha seu RA antes de começar o tutorial ou a prova.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+
+                  const SizedBox(height: 30),
+
+                  // Botões para iniciar o Tutorial e a Prova
+                  ElevatedButton(
+                    onPressed: () => _checkAndNavigate('/tutorial'),
+                    child: const Text('Iniciar Tutorial'),
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () => _checkAndNavigate('/exam'),
+                    child: const Text('Iniciar Prova'),
+                  ),
+                ],
+              ),
             ),
-
-            // Texto explicativo sobre a prova
-            const Text(
-              'Bem-vindo à prova da disciplina, '
-              'ministrada pelo professor José Matias Lemes Filho.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 10),
-            const SizedBox(height: 20),
-
-            // Informações do usuário: Email, ID, Nome e RA
-            _buildUserInfo('Email', _userEmail),
-            _buildUserInfo('Id', _userId),
-            _buildUserInfo('DisplayName', widget.userName),
-            _buildUserInfo('RA', _ra ?? 'RA não cadastrado'),
-
-            const SizedBox(height: 20),
-
-            // Botões para editar o perfil e editar apenas o RA
-            ElevatedButton(
-              onPressed: _goToProfile,
-              child: const Text('Editar Perfil'),
-            ),
-
-            const SizedBox(height: 30),
-
-            const Text(
-              'Por favor, preencha seu RA antes de começar o tutorial ou a prova.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-
-            const SizedBox(height: 30),
-
-            // Botões para iniciar o Tutorial e a Prova
-            ElevatedButton(
-              onPressed: () => _checkAndNavigate('/tutorial'),
-              child: const Text('Iniciar Tutorial'),
-            ),
-            const SizedBox(height: 10),
-            // ElevatedButton(
-            //   onPressed: () => _checkAndNavigate('/exam'),
-            //   child: const Text('Iniciar Prova'),
-            // ),
-          ],
+          ),
         ),
       ),
     );

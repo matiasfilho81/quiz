@@ -33,7 +33,7 @@ class TestScreenState extends State<TestScreen> {
   void initState() {
     super.initState();
     _startTime = DateTime.now();
-    _showScorePerQuestion = Random().nextBool(); // Sorteio A/B
+    _showScorePerQuestion = false; //Random().nextBool(); // Sorteio A/B
     _loadQuestions();
   }
 
@@ -45,7 +45,7 @@ class TestScreenState extends State<TestScreen> {
 
   Future<void> _loadQuestions() async {
     try {
-      final String response = await rootBundle.loadString('assets/exam.json');
+      final String response = await rootBundle.loadString('assets/exam_po.json');
       final List<dynamic> data = json.decode(response);
       setState(() {
         _test = _getRandomQuestions(data, 30);
@@ -94,8 +94,7 @@ class TestScreenState extends State<TestScreen> {
 
     setState(() {
       _answered = true;
-      bool correct =
-          _selectedAnswer == _test[_currentQuestionIndex]['correctAnswer'];
+      bool correct = _selectedAnswer == _test[_currentQuestionIndex]['correctAnswer'];
       if (correct) _score++;
 
       _userAnswers.add({
@@ -120,9 +119,7 @@ class TestScreenState extends State<TestScreen> {
       builder: (context) => AlertDialog(
         title: const Text('Resultado da Questão'),
         content: Text(
-          _userAnswers[_currentQuestionIndex]['isCorrect']
-              ? 'Você acertou esta questão!'
-              : 'Você errou esta questão.',
+          _userAnswers[_currentQuestionIndex]['isCorrect'] ? 'Você acertou esta questão!' : 'Você errou esta questão.',
         ),
         actions: [
           TextButton(
@@ -142,15 +139,14 @@ class TestScreenState extends State<TestScreen> {
     double averageTimePerQuestion = totalDuration.inSeconds / _test.length;
 
     try {
-      await _firestore.collection('test_results').add({
+      await _firestore.collection('test_results_so').add({
         'userName': widget.userName,
         'ra': widget.ra,
         'score': _score,
         'answers': _userAnswers,
         'totalDuration': totalDuration.inSeconds,
         'averageTimePerQuestion': averageTimePerQuestion,
-        'showScorePerQuestion':
-            _showScorePerQuestion, // Informação do experimento A/B
+        'showScorePerQuestion': _showScorePerQuestion,
         'timestamp': FieldValue.serverTimestamp(),
       });
 
@@ -210,6 +206,7 @@ class TestScreenState extends State<TestScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text('Pergunta ${_currentQuestionIndex + 1} de ${_test.length}'),
       ),
       body: Padding(

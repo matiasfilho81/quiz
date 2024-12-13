@@ -45,7 +45,7 @@ class TestScreenState extends State<TestScreen> {
 
   Future<void> _loadQuestions() async {
     try {
-      final String response = await rootBundle.loadString('assets/exam_po.json');
+      final String response = await rootBundle.loadString('assets/exam_po_rec.json');
       final List<dynamic> data = json.decode(response);
       setState(() {
         _test = _getRandomQuestions(data, 30);
@@ -139,7 +139,7 @@ class TestScreenState extends State<TestScreen> {
     double averageTimePerQuestion = totalDuration.inSeconds / _test.length;
 
     try {
-      await _firestore.collection('test_results_so').add({
+      await _firestore.collection('test_results_so_rec').add({
         'userName': widget.userName,
         'ra': widget.ra,
         'score': _score,
@@ -209,42 +209,46 @@ class TestScreenState extends State<TestScreen> {
         automaticallyImplyLeading: false,
         title: Text('Pergunta ${_currentQuestionIndex + 1} de ${_test.length}'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              question['question'],
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            const SizedBox(height: 20),
-            ...List.generate(question['answers'].length, (index) {
-              return RadioListTile<int>(
-                title: Text(question['answers'][index]),
-                value: index,
-                groupValue: _selectedAnswer,
-                onChanged: _answered
-                    ? null
-                    : (value) {
-                        setState(() {
-                          _selectedAnswer = value;
-                        });
-                      },
-              );
-            }),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _answered ? null : _checkAnswer,
-              child: const Text('Confirmar'),
-            ),
-            const Spacer(),
-            Text(
-              'Tempo restante: $_timeRemaining segundos',
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: ListView(
+            shrinkWrap: true,
+            primary: false,
+            // crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                question['question'],
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const SizedBox(height: 20),
+              ...List.generate(question['answers'].length, (index) {
+                return RadioListTile<int>(
+                  title: Text(question['answers'][index]),
+                  value: index,
+                  groupValue: _selectedAnswer,
+                  onChanged: _answered
+                      ? null
+                      : (value) {
+                          setState(() {
+                            _selectedAnswer = value;
+                          });
+                        },
+                );
+              }),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _answered ? null : _checkAnswer,
+                child: const Text('Confirmar'),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'Tempo restante: $_timeRemaining segundos',
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
         ),
       ),
     );

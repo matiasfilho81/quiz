@@ -1,0 +1,542 @@
+[
+    {
+        "question": "Qual é a principal diferença entre um processo e uma thread no contexto de sistemas operacionais? Explique considerando como os recursos de memória são gerenciados por ambos.",
+        "answers": [
+            "Processos são independentes, enquanto threads compartilham recursos do mesmo processo.",
+            "Processos compartilham recursos do mesmo processo, enquanto threads são independentes.",
+            "Processos são executados dentro de threads.",
+            "Threads não têm impacto no desempenho de um sistema operacional."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Por que o uso de threads pode ser mais vantajoso em algumas situações do que a utilização de processos separados? Explique considerando comunicação e desempenho.",
+        "answers": [
+            "Threads consomem mais recursos do sistema.",
+            "Threads são mais seguras do que processos.",
+            "Threads compartilham a mesma memória, o que facilita a comunicação entre elas.",
+            "Threads não compartilham memória, evitando problemas de sincronização."
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "O que deve ser feito para evitar condições de corrida entre threads em um sistema operacional multitarefa?",
+        "answers": [
+            "Evitar múltiplas threads em um programa.",
+            "Usar técnicas de sincronização, como mutexes e semáforos.",
+            "Aumentar a prioridade das threads.",
+            "Executar as threads sequencialmente."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual dos seguintes exemplos melhor descreve uma aplicação prática do uso de threads?",
+        "answers": [
+            "Um navegador de internet que carrega diferentes abas.",
+            "Um sistema operacional que gerencia processos.",
+            "Um programa que realiza backups automáticos.",
+            "Um editor de texto que salva arquivos automaticamente."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Em sistemas que utilizam múltiplas threads, qual ferramenta abaixo é comumente usada para sincronizar sua execução e evitar conflitos de acesso a recursos compartilhados?",
+        "answers": [
+            "Scheduler",
+            "Mutex",
+            "Paginação",
+            "Pipeline"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é a principal função de um sistema operacional no gerenciamento de hardware e software de um computador?",
+        "answers": [
+            "Gerenciar hardware e software de um computador.",
+            "Apenas executar programas.",
+            "Armazenar arquivos permanentemente.",
+            "Controlar apenas a memória RAM."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "O Linux é conhecido por usar o sistema de arquivos EXT4. Qual das opções abaixo descreve corretamente uma característica desse sistema de arquivos?",
+        "answers": [
+            "Compatibilidade limitada com sistemas Windows.",
+            "Extrema lentidão em sistemas grandes.",
+            "Alta eficiência para manipulação de grandes volumes de dados.",
+            "Incapacidade de armazenar arquivos grandes."
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Qual é o objetivo principal de um sistema operacional de tempo real, como aqueles usados em dispositivos médicos ou aeronaves?",
+        "answers": [
+            "Flexibilidade na execução de tarefas.",
+            "Garantir tempos de resposta previsíveis para ações críticas.",
+            "Execução baseada na disponibilidade do sistema.",
+            "Foco em tarefas gráficas e interativas."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Quais são as principais vantagens de um sistema operacional de código aberto, como o Linux, em relação a sistemas proprietários?",
+        "answers": [
+            "Menor compatibilidade com hardware.",
+            "Maior custo de licenciamento.",
+            "Permite personalização e acesso ao código-fonte.",
+            "Menor suporte de comunidade."
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "O que é segmentação no gerenciamento de memória, e como ela é aplicada para organizar os processos?",
+        "answers": [
+            "Divisão fixa da memória em partes iguais.",
+            "Divisão lógica do espaço de memória em segmentos de tamanho variável.",
+            "Ajuste dinâmico de memória com páginas fixas.",
+            "Gerenciamento de memória apenas para dados."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é o principal problema associado ao uso de segmentação no gerenciamento de memória?",
+        "answers": [
+            "Fragmentação externa.",
+            "Fragmentação interna.",
+            "Incompatibilidade de tamanhos de páginas.",
+            "Problemas de acesso concorrente."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Por que a segmentação é considerada uma abordagem vantajosa para o gerenciamento de memória em alguns casos?",
+        "answers": [
+            "Elimina a fragmentação externa.",
+            "Organiza a memória em partes que refletem a lógica do programa.",
+            "Divide a memória em blocos fixos.",
+            "Requer menos controle do sistema operacional."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Como é realizado o mapeamento de um endereço lógico para um endereço físico no modelo de segmentação?",
+        "answers": [
+            "Usando a tabela de segmentos, que armazena a base e o limite de cada segmento.",
+            "Utilizando apenas cálculos baseados em deslocamento.",
+            "Com base em tamanhos fixos das páginas.",
+            "Através de processos independentes."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "O que é paginação no gerenciamento de memória, e como ela elimina a necessidade de alocação contígua?",
+        "answers": [
+            "Divisão da memória em segmentos lógicos de tamanho variável.",
+            "Divisão da memória em blocos fixos chamados páginas e molduras.",
+            "Ajuste dinâmico da memória física com alocação direta.",
+            "Gerenciamento de processos independentes."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Ao utilizar paginação, qual problema específico do gerenciamento de memória é resolvido?",
+        "answers": [
+            "Fragmentação externa.",
+            "Fragmentação interna.",
+            "Condições de corrida.",
+            "Sincronização de threads."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual é a principal vantagem de utilizar threads em um programa em comparação com a utilização de múltiplos processos?",
+        "answers": [
+            "Threads consomem menos recursos do sistema, como memória e CPU, em comparação aos processos.",
+            "Threads são mais lentas na comunicação entre si.",
+            "Threads não podem compartilhar variáveis globais.",
+            "Threads não podem ser executadas em paralelo."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Por que é importante implementar sincronização entre threads em um sistema com múltiplas threads concorrentes?",
+        "answers": [
+            "Para garantir que todas as threads sejam executadas ao mesmo tempo.",
+            "Para evitar conflitos de acesso a recursos compartilhados, como variáveis e memória.",
+            "Para permitir que threads ignorem as condições de corrida.",
+            "Para evitar que threads usem recursos não alocados."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual das seguintes ferramentas é mais comumente usada para sincronizar threads em sistemas operacionais?",
+        "answers": [
+            "Tabelas de páginas.",
+            "Mutex.",
+            "Segmentação.",
+            "Paginação."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é uma situação prática em que threads seriam mais eficientes do que processos?",
+        "answers": [
+            "Carregar múltiplas abas de um navegador ao mesmo tempo.",
+            "Executar sistemas operacionais inteiros em máquinas virtuais.",
+            "Controlar tarefas independentes em servidores diferentes.",
+            "Armazenar dados em dispositivos de memória persistente."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual é a relação entre o consumo de recursos e a utilização de threads em um sistema operacional?",
+        "answers": [
+            "Threads compartilham recursos como memória e arquivos abertos do mesmo processo, reduzindo o consumo total de recursos.",
+            "Threads utilizam mais recursos do sistema do que processos, como memória e CPU.",
+            "Threads precisam ser completamente independentes para funcionar corretamente.",
+            "Threads requerem acesso dedicado a toda a memória do sistema."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Quando uma condição de corrida ocorre em um programa multithreaded, qual é o efeito mais provável?",
+        "answers": [
+            "As threads executam sem problemas, mesmo que acessem recursos simultaneamente.",
+            "Os resultados do programa tornam-se imprevisíveis ou incorretos devido ao acesso concorrente a recursos compartilhados.",
+            "O sistema operacional força a execução sequencial das threads.",
+            "As threads não são afetadas e continuam a compartilhar memória normalmente."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual dos seguintes cenários é um exemplo claro do uso de threads para melhorar o desempenho de um sistema?",
+        "answers": [
+            "Uma aplicação que executa cálculos matemáticos em paralelo para diferentes partes de um problema.",
+            "Um sistema de backup que copia arquivos entre discos rígidos de diferentes servidores.",
+            "Um programa que divide dados em segmentos de memória distintos para processamento independente.",
+            "Um banco de dados que opera em máquinas separadas para diferentes clientes."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Por que threads são geralmente usadas em aplicações que exigem alta responsividade, como interfaces gráficas de usuário (GUIs)?",
+        "answers": [
+            "Threads garantem que todas as operações sejam executadas sequencialmente.",
+            "Threads permitem que a interface do usuário continue respondendo enquanto outras tarefas são processadas em segundo plano.",
+            "Threads eliminam completamente o consumo de recursos do sistema.",
+            "Threads sempre têm prioridade máxima no sistema operacional."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual das opções abaixo melhor descreve o conceito de paralelismo em sistemas que utilizam múltiplas threads?",
+        "answers": [
+            "Executar várias threads em sequência para otimizar o uso de recursos.",
+            "Executar várias threads simultaneamente em diferentes núcleos de CPU para melhorar o desempenho.",
+            "Dividir um processo em threads independentes, mas sem permitir a execução simultânea.",
+            "Utilizar threads para armazenar dados em diferentes partes da memória."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Em um sistema multithreaded, o que acontece se não houver sincronização adequada entre threads que compartilham recursos?",
+        "answers": [
+            "O sistema operacional automaticamente coordena o acesso entre as threads.",
+            "Pode haver resultados inconsistentes, falhas no programa ou corrupção de dados.",
+            "As threads param de executar até que a sincronização seja estabelecida.",
+            "Os recursos compartilhados são divididos igualmente entre as threads."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é a diferença entre o contexto de execução de um processo e de uma thread em sistemas operacionais?",
+        "answers": [
+            "O contexto de um processo é independente, enquanto as threads compartilham o mesmo contexto dentro do processo.",
+            "As threads têm contextos completamente isolados, como os processos.",
+            "Os processos não possuem contextos de execução.",
+            "Threads não dependem de processos para existir."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "O que acontece quando duas threads acessam simultaneamente um mesmo recurso sem sincronização adequada?",
+        "answers": [
+            "O recurso é automaticamente compartilhado sem problemas.",
+            "A execução das threads é pausada até que a sincronização seja feita.",
+            "Pode ocorrer uma condição de corrida, gerando resultados inconsistentes.",
+            "O sistema operacional aloca novos recursos automaticamente."
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Em quais situações a criação de múltiplas threads pode ser menos eficiente do que o uso de processos?",
+        "answers": [
+            "Quando as threads precisam compartilhar uma grande quantidade de memória.",
+            "Quando há pouca comunicação entre as tarefas e elas são completamente independentes.",
+            "Quando os processos dependem de dados compartilhados.",
+            "Quando o sistema possui uma quantidade limitada de núcleos de CPU."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual das opções abaixo descreve um benefício de usar threads em sistemas que precisam realizar tarefas paralelas?",
+        "answers": [
+            "Threads evitam completamente o uso de memória compartilhada.",
+            "Threads permitem dividir o trabalho em tarefas menores que podem ser executadas simultaneamente.",
+            "Threads garantem que todas as operações sejam executadas sequencialmente.",
+            "Threads eliminam a necessidade de sistemas operacionais."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Em um sistema operacional moderno, como um semáforo pode ajudar a coordenar threads concorrentes?",
+        "answers": [
+            "Os semáforos bloqueiam permanentemente threads concorrentes.",
+            "Os semáforos garantem acesso exclusivo a um recurso compartilhado, controlando a ordem de execução.",
+            "Os semáforos eliminam a necessidade de threads em sistemas multitarefa.",
+            "Os semáforos dividem automaticamente a memória entre threads."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "O que significa o conceito de ‘multiprocessamento simétrico’ no contexto de threads?",
+        "answers": [
+            "Um sistema com um único núcleo de CPU executando múltiplas threads.",
+            "Um sistema com múltiplos núcleos de CPU compartilhando threads de forma igual.",
+            "Threads independentes que operam em sistemas de tempo real.",
+            "A execução de uma única thread em múltiplos processadores ao mesmo tempo."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual das alternativas abaixo é uma aplicação típica de threads em um ambiente de rede?",
+        "answers": [
+            "Um servidor web que processa múltiplas conexões simultaneamente usando threads.",
+            "Um editor de texto que salva documentos automaticamente.",
+            "Uma aplicação de backup que utiliza uma thread por arquivo.",
+            "Um programa de edição de imagem com várias janelas abertas."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Por que o uso de threads pode reduzir a sobrecarga de criação de novos processos?",
+        "answers": [
+            "Porque threads não utilizam recursos de memória.",
+            "Porque threads compartilham recursos como memória e arquivos abertos, evitando duplicação de alocação.",
+            "Porque threads são criadas diretamente pela CPU sem interação com o sistema operacional.",
+            "Porque threads eliminam a necessidade de memória virtual."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Como o gerenciamento de threads afeta o desempenho de aplicações que utilizam processamento paralelo?",
+        "answers": [
+            "Permite a execução de múltiplas tarefas simultaneamente, reduzindo o tempo total de processamento.",
+            "Aumenta o consumo de memória e reduz o desempenho do sistema.",
+            "Elimina a necessidade de sincronização entre tarefas.",
+            "Impede que a CPU utilize seu poder total de processamento."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual é a principal diferença entre threads de nível de usuário e threads de nível de kernel?",
+        "answers": [
+            "Threads de nível de usuário são gerenciadas pelo sistema operacional, enquanto threads de nível de kernel são gerenciadas pelo programa.",
+            "Threads de nível de kernel podem aproveitar múltiplos núcleos de CPU, enquanto threads de nível de usuário não podem.",
+            "Threads de nível de usuário operam diretamente no hardware.",
+            "Threads de nível de kernel não possuem acesso à memória do processo."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "O que é uma condição de deadlock em sistemas que utilizam threads?",
+        "answers": [
+            "Quando duas ou mais threads estão bloqueadas, esperando por recursos que nunca serão liberados.",
+            "Quando uma thread é executada em paralelo com outra thread.",
+            "Quando threads compartilham recursos sem sincronização adequada.",
+            "Quando threads operam com tempo de execução ilimitado."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Por que o modelo de threads é amplamente utilizado em servidores que lidam com muitas conexões simultâneas?",
+        "answers": [
+            "Porque threads eliminam a necessidade de sistemas operacionais.",
+            "Porque threads permitem gerenciar cada conexão de forma independente e com menor consumo de recursos.",
+            "Porque threads não exigem memória compartilhada.",
+            "Porque threads não precisam de gerenciamento pelo sistema operacional."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "O que acontece quando um semáforo binário é usado em um programa multithread?",
+        "answers": [
+            "Permite que várias threads acessem um recurso ao mesmo tempo.",
+            "Permite que apenas uma thread acesse um recurso compartilhado por vez.",
+            "Elimina a necessidade de threads concorrentes.",
+            "Desabilita a memória compartilhada entre threads."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Como o paralelismo de threads pode ser limitado em sistemas com poucos núcleos de CPU?",
+        "answers": [
+            "As threads excedentes esperam até que os núcleos fiquem disponíveis para processamento.",
+            "Os sistemas não permitem criar mais threads do que o número de núcleos.",
+            "As threads não podem compartilhar recursos quando o número de núcleos é pequeno.",
+            "O sistema operacional desativa automaticamente o uso de threads."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Por que a fragmentação interna pode ocorrer ao usar paginação no gerenciamento de memória?",
+        "answers": [
+            "Porque as molduras de página podem não ser totalmente preenchidas, resultando em desperdício de espaço.",
+            "Porque as páginas não são mapeadas para molduras físicas.",
+            "Porque a memória é dividida em segmentos de tamanho variável.",
+            "Porque o sistema operacional não consegue gerenciar múltiplas threads."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual é a principal função de uma tabela de páginas em um sistema que utiliza paginação?",
+        "answers": [
+            "Armazenar os endereços base e limite de segmentos.",
+            "Mapear páginas lógicas para molduras físicas na memória.",
+            "Gerenciar a sincronização de threads.",
+            "Ajustar os tamanhos das páginas dinamicamente."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual problema a segmentação pode enfrentar que é resolvido pela paginação?",
+        "answers": [
+            "Fragmentação externa.",
+            "Fragmentação interna.",
+            "Condições de corrida.",
+            "Uso inadequado de threads."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Em que cenário o uso de threads pode ser menos eficiente do que processos?",
+        "answers": [
+            "Quando há tarefas completamente independentes e sem comunicação.",
+            "Quando há compartilhamento intensivo de dados entre tarefas.",
+            "Quando as tarefas dependem fortemente de recursos compartilhados.",
+            "Quando há alta interdependência entre tarefas paralelas."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual das seguintes alternativas descreve corretamente o conceito de uma condição de corrida em sistemas multithreaded?",
+        "answers": [
+            "Um conflito que ocorre quando várias threads acessam e modificam um recurso compartilhado simultaneamente sem sincronização adequada.",
+            "A execução simultânea de múltiplos processos sem comunicação.",
+            "A falha do sistema operacional em gerenciar threads corretamente.",
+            "A criação de threads em tempo de execução sem limitações."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "O que são permissões de arquivos em sistemas operacionais, e como elas podem ser configuradas em sistemas Windows e Linux?",
+        "answers": [
+            "Permissões definem quem pode acessar um arquivo e o que pode ser feito com ele; no Windows, são configuradas através da GUI, e no Linux, pelo comando chmod.",
+            "Permissões determinam apenas quem pode acessar um arquivo; no Linux, são configuradas automaticamente.",
+            "Permissões em sistemas operacionais só se aplicam a usuários administradores.",
+            "Permissões garantem que apenas o sistema operacional possa acessar os arquivos."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual seria o impacto de um arquivo confidencial estar configurado para leitura por todos os usuários?",
+        "answers": [
+            "Nenhum impacto, pois arquivos confidenciais são protegidos por padrão.",
+            "Todos os usuários poderiam acessar as informações do arquivo, expondo dados sensíveis.",
+            "Somente administradores poderiam acessar o arquivo, mesmo com permissões de leitura.",
+            "O sistema operacional bloqueia automaticamente acessos não autorizados."
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Qual é a principal diferença entre usuários administradores e usuários comuns no gerenciamento de permissões de arquivos?",
+        "answers": [
+            "Usuários administradores têm acesso total e podem alterar permissões de qualquer arquivo, enquanto usuários comuns só podem alterar arquivos que possuem.",
+            "Usuários comuns têm as mesmas permissões que administradores, mas em menor escala.",
+            "Usuários administradores só podem acessar arquivos de sistema, enquanto usuários comuns acessam arquivos pessoais.",
+            "Usuários comuns podem alterar qualquer permissão, desde que estejam conectados como administradores."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Por que a criptografia é fundamental para proteger arquivos armazenados em sistemas operacionais?",
+        "answers": [
+            "A criptografia transforma os dados em um formato ilegível para proteger informações confidenciais contra acessos não autorizados.",
+            "A criptografia organiza os arquivos em pastas específicas para aumentar o desempenho.",
+            "A criptografia elimina a necessidade de backups regulares.",
+            "A criptografia impede que qualquer pessoa acesse arquivos, mesmo com permissões corretas."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual é a diferença prática entre criptografia simétrica e criptografia assimétrica?",
+        "answers": [
+            "Na criptografia simétrica, a mesma chave é usada para criptografar e descriptografar, enquanto na assimétrica são usadas chaves diferentes (pública e privada).",
+            "Na criptografia simétrica, nenhuma chave é usada, enquanto na assimétrica, as chaves são iguais.",
+            "A criptografia assimétrica é mais rápida que a simétrica.",
+            "Na criptografia assimétrica, os dados não podem ser descriptografados."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "O que pode acontecer com uma empresa que não realiza backups regulares de seus sistemas de arquivos?",
+        "answers": [
+            "A empresa pode perder dados críticos em caso de falhas no sistema ou ataques cibernéticos, comprometendo suas operações.",
+            "A empresa pode recuperar automaticamente os dados perdidos sem necessidade de backups.",
+            "Os sistemas operacionais impedem a perda de dados, mesmo sem backups regulares.",
+            "Apenas dados confidenciais são afetados pela falta de backups."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Qual é a principal diferença entre backups locais e backups em nuvem?",
+        "answers": [
+            "Backups locais são armazenados em dispositivos físicos, enquanto backups em nuvem são armazenados em servidores remotos acessíveis pela internet.",
+            "Backups locais têm maior segurança que backups em nuvem.",
+            "Backups em nuvem são mais acessíveis, mas menos seguros que backups locais.",
+            "Não há diferença significativa entre backups locais e backups em nuvem."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Como o ransomware bloqueia o acesso a arquivos em sistemas de arquivos de computadores?",
+        "answers": [
+            "O ransomware criptografa os arquivos da vítima, exigindo pagamento para fornecer a chave de descriptografia.",
+            "O ransomware altera as permissões de arquivos para negar acesso a todos os usuários.",
+            "O ransomware exclui automaticamente os arquivos do sistema.",
+            "O ransomware copia os arquivos e armazena em locais inacessíveis."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Quais medidas podem ser tomadas para proteger arquivos em sistemas corporativos contra ataques como ransomware?",
+        "answers": [
+            "Utilizar backups regulares, implementar criptografia forte, restringir permissões e usar softwares de segurança.",
+            "Permitir que todos os usuários tenham acesso aos arquivos.",
+            "Desabilitar o uso de criptografia para evitar incompatibilidades.",
+            "Depender exclusivamente de antivírus para proteger os arquivos."
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Quais são as principais funcionalidades do EFS no Windows e do LUKS no Linux para proteger sistemas de arquivos?",
+        "answers": [
+            "Ambos oferecem criptografia para proteger arquivos e pastas, garantindo que apenas usuários autorizados possam acessá-los.",
+            "O EFS permite backups automáticos, enquanto o LUKS protege apenas permissões.",
+            "O LUKS elimina a necessidade de autenticação em sistemas Linux.",
+            "O EFS organiza os arquivos de forma a evitar sua exclusão acidental."
+        ],
+        "correctAnswer": 0
+    }
+]
